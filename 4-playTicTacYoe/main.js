@@ -3,7 +3,7 @@ let playTicTacToe = (symbol, cellNumber) => {
     if ((symbol == "x" || symbol == "o") && typeof cellNumber == "number" && board[cellNumber] == "z" && !isGameOver) {
         board[cellNumber] = symbol
         if (checkwinner(board)) {
-            console.log("Winner is", symbol);
+            console.log("Winner is", tempVar);
             console.log("Board Resetted");
             board = ["z", "z", "z", "z", "z", "z", "z", "z", "z"]
         }
@@ -33,41 +33,49 @@ let playTicTacToe = (symbol, cellNumber) => {
 
 let checkwinner = (board) => {
     if (board[0] == board[4] && board[4] == board[8] && board[4] != "z") {
+        tempVar=board[4]
         isGameOver = true
         return isGameOver
     }
 
     if (board[2] == board[4] && board[4] == board[6] && board[4] != "z") {
+        tempVar=board[4]
         isGameOver = true
         return isGameOver
     }
 
     if (board[0] == board[3] && board[3] == board[6] && board[3] != "z") {
+        tempVar=board[3]
         isGameOver = true
         return isGameOver
     }
 
     if (board[1] == board[4] && board[4] == board[7] && board[4] != "z") {
+        tempVar=board[4]
         isGameOver = true
         return isGameOver
     }
 
     if (board[2] == board[5] && board[5] == board[8] && board[5] != "z") {
+        tempVar=board[5]
         isGameOver = true
         return isGameOver
     }
 
     if (board[0] == board[1] && board[1] == board[2] && board[1] != "z") {
+        tempVar=board[1]
         isGameOver = true
         return isGameOver
     }
 
     if (board[3] == board[4] && board[4] == board[5] && board[4] != "z") {
+        tempVar=board[4]
         isGameOver = true
         return isGameOver
     }
 
     if (board[6] == board[7] && board[7] == board[8] && board[7] != "z") {
+        tempVar=board[7]
         isGameOver = true
         return isGameOver
     }
@@ -81,9 +89,9 @@ let BoardFull = (board) => {
 }
 
 var isBoardFull = false
-
+var tempVar = "v"
 var isGameOver = false;
-var board = ["z", "z", "z", "z", "z", "z", "z", "z", "z"]
+var board = ["o", "o", "o", "z", "z", "z", "z", "z", "z"]
 
 // playTicTacToe("x",0)
 // playTicTacToe("x",3)
@@ -91,7 +99,7 @@ var board = ["z", "z", "z", "z", "z", "z", "z", "z", "z"]
 // playTicTacToe("o",7)
 // playTicTacToe("o",8)
 
-for (let index = 0; index < 9; index++) {
-    console.log("iTERATION: ", index);
-    console.log(playTicTacToe("x", index));
-}
+// for (let index = 0; index < 9; index++) {
+//     console.log("iTERATION: ", index);
+//     console.log(playTicTacToe("x", index));
+// }
