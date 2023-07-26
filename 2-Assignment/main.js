@@ -60,7 +60,10 @@ let functionGenrator = (functionName) => {
         case "checkPrime": return ["Given number", isPrime]
         case "fibonaci": return ["Fibonaci series is ", printFibonaciSeries]
         case "count": return ["Count is ", typeCount]
-        default: return ["Invalid", null]
+        default: return function () {
+            console.log("Inside default");
+            return "Invalid Input","nothing"
+        }
     }
 }
 
