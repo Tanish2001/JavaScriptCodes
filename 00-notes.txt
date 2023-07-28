@@ -1,0 +1,6 @@
+npm init -y to start a npm project
+
+module.exports = class name to use one file in another file
+
+will only validate user inputs
+user only interacting with one class i.e. game class, so factory is required 
