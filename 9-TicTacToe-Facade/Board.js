@@ -15,6 +15,20 @@ class Board{
     ]
 
     }
+
+    resetBoard(){
+        this.cells =[
+            new Cell(),
+            new Cell(),
+            new Cell(),
+            new Cell(),
+            new Cell(),
+            new Cell(),
+            new Cell(),
+            new Cell(),
+            new Cell(),
+        ]
+    }
     
     isCellMarked(cellNumber){
         return this.cells[cellNumber].isEmpty()

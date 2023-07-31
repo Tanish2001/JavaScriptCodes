@@ -6,6 +6,7 @@ class Player{
     
     markCell(cellObj){
         cellObj.mark=(this.symbol)
+        // cellObj.mark(this.symbol)
     }
 }
 

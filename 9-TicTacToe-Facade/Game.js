@@ -56,13 +56,24 @@ class Game{
             return "Continue playing"
         }
         if(gameStatus=="Draw"){
-            return "Game Ended as Draw"
+            this.board.resetBoard()
+            // this.isGameEnded = true
+            this.turn = 0
+            console.log("Game Ended as Draw");
+            return "Board resetted"
         }
         if(symbolOfWinner==this.players[0].symbolOfWinner){
-            return this.players[0].name + " Is winner"
+            this.board.resetBoard()
+            this.isGameEnded = true
+            this.turn = 0
+            console.log(this.players[0].name + " Is winner");
+            return "Board resetted"
         }
-        this.isGameEnded = true
-        return this.players[1].name + " Is winner"
+        // this.isGameEnded = true
+        this.turn = 0
+        this.board.resetBoard()
+        console.log(this.players[1].name + " Is winner");
+        return "Board Resetted"
 
     }
 }
