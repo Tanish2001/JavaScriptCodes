@@ -102,7 +102,7 @@ class Employee {
 
         let subordinates = []
 
-        return new Employee(fname, lname, employeeID, fullName, salaryPerMonth, annualSalary, designation, department, setDateOfJoining, this.dateOfResignation, this.totalExperienceInCompany, contactNumber, setPersonalEmail, workEmail, FormattedDateOfBirth, age, address, city, country, office, Employee.settingreportingOfficer, subordinates)
+        return new Employee(fname, lname, employeeID, fullName, salaryPerMonth, annualSalary, designation, department, setDateOfJoining, this.dateOfResignation, this.totalExperienceInCompany, contactNumber, setPersonalEmail, workEmail, FormattedDateOfBirth, age, address, city, country, office, Employee.reportingOfficer, subordinates)
 
     }
 
