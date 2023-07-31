@@ -62,17 +62,19 @@ class Game{
             console.log("Game Ended as Draw");
             return "Board resetted"
         }
-        if(symbolOfWinner==this.players[0].symbolOfWinner){
+        if(symbolOfWinner==this.players[1].symbol){
             this.board.resetBoard()
-            this.isGameEnded = true
+            // this.isGameEnded = true
             this.turn = 0
-            console.log(this.players[0].name + " Is winner");
+            console.log(this.players[1]);
+            console.log(this.players[1].name + " Is winner");
             return "Board resetted"
         }
         // this.isGameEnded = true
         this.turn = 0
         this.board.resetBoard()
-        console.log(this.players[1].name + " Is winner");
+        console.log(this.players[0]);
+        console.log(this.players[0].name + " Is winner");
         return "Board Resetted"
 
     }
