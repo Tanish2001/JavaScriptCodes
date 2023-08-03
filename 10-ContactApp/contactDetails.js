@@ -7,11 +7,11 @@ class ContactDetails{
     }
 
     updateContactInfo(parameter,newValue){
-        console.log(parameter,newValue);
+        // console.log(parameter,newValue);
         switch (parameter) {
             case "typeOfContact":
                 if(typeof newValue != "string"){ return "Invalid new value"}
-                console.log("entered typeOfContact");
+                // console.log("entered typeOfContact");
                 this.typeOfContact = newValue
                 return this
                 // break;

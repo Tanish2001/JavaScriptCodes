@@ -35,6 +35,8 @@ class Contact{
     }
 
     createNewContactInfo(typeOfContact,valueOfContact){
+        if(typeof typeOfContact != "string"){return "Enter a valid type of contact name"}
+        if(typeof valueOfContact != "number"){return "Enter a valid phone number"}
         let NewContactInfo = new ContactDetails(typeOfContact,valueOfContact)
         // console.log(NewContactInfo);
         this.contactinfo.push(NewContactInfo)
@@ -43,6 +45,7 @@ class Contact{
     }
 
     findContactInfo(passContactInfoID){
+        if(typeof passContactInfoID!= "number"){ return "Invalid ContactInfo ID"}
         for (let index = 0; index < this.contactinfo.length; index++) {
             if(this.contactinfo[index].id==passContactInfoID){
                 return [this.contactinfo[index],true]

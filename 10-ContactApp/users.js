@@ -58,6 +58,9 @@ class Users {
     }
 
     findStaff(ID) {
+        if (typeof ID != "number") {
+            return "Enter a valid ID"
+        }
         // console.log(Users.allUsers[0].userID);
         for (let index = 0; index < Users.allUsers.length; index++) {
             if (Users.allUsers[index].userID == ID) {
@@ -75,6 +78,7 @@ class Users {
         if (typeof ID != "number") {
             return "Enter a valid ID"
         }
+        if(typeof parameter != "string"){ return "Enter the parameter as string"}
         let [index, message] = this.findStaff(ID)
         if (!message) {
             return "Staff does not exsist"
@@ -82,16 +86,19 @@ class Users {
         switch (parameter) {
             case "fullName":
                 // console.log("here");
+                if(typeof newValue != "string"){ return "Enter a valid name"}
                 Users.allUsers[index].fullName = newValue
                 // console.log(Users.allUsers[index].fullName);
                 // console.log(index);
                 return Users.allUsers[index]
 
             case "age":
+                if(typeof newValue != "number"){ return "Enter a valid age number"}
                 Users.allUsers[index].age = newValue
                 return Users.allUsers[index]
 
             case "gender":
+                if(typeof newValue != "string"){ return "Enter a valid gender"}
                 Users.allUsers[index].gender = newValue
                 return Users.allUsers[index]
 
@@ -120,7 +127,7 @@ class Users {
 
     getSpecificStaff(ID) {
         if (!this.isAdmin) {
-            return "Only Admin can update staff"
+            return "Only Admin can get staff"
         }
         if (typeof ID != "number") {
             return "Enter a valid ID"
@@ -133,6 +140,9 @@ class Users {
     }
 
     findContact(contactID) {
+        if (this.isAdmin) {
+            return "Only Admin can update staff"
+        }
         for (let index = 0; index < this.contact.length; index++) {
             // console.log(this.contact.length);
             // console.log(this.contact[index]);
@@ -148,6 +158,12 @@ class Users {
     createNewContact(contactNname, contactCountry) {
         if(this.isAdmin){
             return "Only staff can use this function"
+        }
+        if(contactNname!="string"){
+            return "Enter a valid contact name"
+        }
+        if(contactCountry!="string"){
+            return "Enter a valid contact name"
         }
         let newContact = new Contact(contactNname, contactCountry)
         this.contact.push(newContact)
@@ -189,6 +205,9 @@ class Users {
     }
 
     createNewContactInfo(contactID, typeOfContact, valueOfContact){
+        if(this.isAdmin){
+            return "Only staff can do this"
+        }
         if(typeof contactID != "number"){
             return "Enter a valid contact ID"
         }
@@ -208,6 +227,12 @@ class Users {
     }
 
     getAllContactInfo(contactid){
+        if(this.isAdmin){
+            return "Only staff can do this"
+        }
+        if(typeof contactid != "number"){
+            return "Enter a valid Contact ID"
+        }
         // for (let index = 0; index < this.contact.length; index++) {
         //     if(this.contact[index].id == contactid){
         //         // return this.contact[index].contactinfo
@@ -232,6 +257,15 @@ class Users {
 
     updateContactInfo(contactID,parameter,newValue,contactinfoID){
         if(this.isAdmin){ return "Only staff can do this"}
+        if(typeof contactID != "number"){
+            return "Enter a valid Contact ID"
+        }
+        if(typeof contactinfoID != "number"){
+            return "Enter a valid Contact Info ID"
+        }
+        if(typeof parameter!= "string"){
+            return "enter a valid parameter name"
+        }
         let [indexOfContactInfo,msg] = this.findContact(contactID)
         if(!msg){
             console.log("Contact does not exsist");
@@ -243,6 +277,15 @@ class Users {
     }
 
     deleteContactInfo(contactID,parameter){
+        if(this.isAdmin){
+            return "Only staff can do this"
+        }
+        if(typeof contactID != "number"){
+            return "Enter a valid Contact ID"
+        }
+        if(typeof parameter!= "string"){
+            return "enter a valid parameter name"
+        }
         let [indexOfContactInfo,msg] = this.findContact(contactID)
         if(!msg){
             return "Contact does not exsist"
@@ -274,6 +317,7 @@ staff1.createNewContactInfo(0,"home",99999)
 staff1.createNewContactInfo(0,"work",99999)
 staff1.createNewContactInfo(1,"home",99999)
 staff1.createNewContactInfo(1,"work",99999)
+// console.log(admin.createNewContact("hehe","ant"));
 // console.log(admin.getSpecificStaff(1));
 // console.log(staff1.getAllContactInfo(0));
 // staff1.updateContactInfo(0,"typeOfContact","antartica")
@@ -297,6 +341,7 @@ staff4.createNewContact("cyno", "IND")
 staff4.createNewContact("candace", "IND")
 // staff1.deleteContact(0)
 staff4.updateContact(4, "contactName", "Amber")
+// admin.updateStaff(4,"gender","female")
 staff4.createNewContactInfo(3,"home",1213)
 staff4.createNewContactInfo(3,"work",12344)
 staff4.createNewContactInfo(3,"gaming",75843)
