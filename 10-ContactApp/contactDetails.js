@@ -8,23 +8,27 @@ class ContactDetails{
 
     updateContactInfo(parameter,newValue){
         // console.log(parameter,newValue);
-        switch (parameter) {
-            case "typeOfContact":
-                if(typeof newValue != "string"){ return "Invalid new value"}
-                // console.log("entered typeOfContact");
-                this.typeOfContact = newValue
-                return this
-                // break;
-
-            case "valueOfContact":
-                if(typeof newValue != "string"){ return "Invalid new value"}
-                this.valueOfContact = newValue
-                return this
-        
-            default:
-                return "Invalid Parameter"
-
-            }
+        try {
+            switch (parameter) {
+                case "typeOfContact":
+                    if(typeof newValue != "string"){ throw new Error ("Invalid new value")}
+                    // console.log("entered typeOfContact");
+                    this.typeOfContact = newValue
+                    return this
+                    // break;
+    
+                case "valueOfContact":
+                    if(typeof newValue != "string"){ throw new Error ("Invalid new value")}
+                    this.valueOfContact = newValue
+                    return this
+            
+                default:
+                    throw new Error ("Invalid Parameter")
+    
+                }
+        } catch (error) {
+            throw error
+        }
     }
 
     // deleteContactInfo(parameter){

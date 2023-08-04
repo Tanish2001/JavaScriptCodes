@@ -14,44 +14,57 @@ class Contact{
     }
 
     updateContact(parameter,newValue){
-        switch (parameter) {
-            case "contactName":
-                if(typeof this.contactName!= "string"){
-                    return "Enter a valid name"
-                }
-                this.contactName = newValue
-                return this
+        try {
+            switch (parameter) {
+                case "contactName":
+                    if(typeof this.contactName!= "string"){
+                        throw new  Error("Enter a valid name")
+                    }
+                    this.contactName = newValue
+                    return this
+                
+                case "country":
+                    if(typeof this.contactName!= "string"){
+                        throw new  Error("Enter a valid country name")
+                    }
+                    this.country = newValue
+                    return this
             
-            case "country":
-                if(typeof this.contactName!= "string"){
-                    return "Enter a valid country name"
+                default:
+                    throw new  Error("Enter a valid parameter name")
                 }
-                this.country = newValue
-                return this
-        
-            default:
-                return "Enter a valid parameter"
+        } catch (error) {
+            throw error
         }
     }
 
     createNewContactInfo(typeOfContact,valueOfContact){
-        if(typeof typeOfContact != "string"){return "Enter a valid type of contact name"}
-        if(typeof valueOfContact != "number"){return "Enter a valid phone number"}
-        let NewContactInfo = new ContactDetails(typeOfContact,valueOfContact)
-        // console.log(NewContactInfo);
-        this.contactinfo.push(NewContactInfo)
-        // console.log("contact info added");
-        return NewContactInfo
+        try{
+            if(typeof typeOfContact != "string"){throw new Error ("Enter a valid type of contact name")}
+            if(typeof valueOfContact != "number"){throw new Error ("Enter a valid phone number")}
+            let NewContactInfo = new ContactDetails(typeOfContact,valueOfContact)
+            // console.log(NewContactInfo);
+            this.contactinfo.push(NewContactInfo)
+            // console.log("contact info added");
+            return NewContactInfo
+        }
+        catch(error){
+            throw error
+        }
     }
 
     findContactInfo(passContactInfoID){
-        if(typeof passContactInfoID!= "number"){ return "Invalid ContactInfo ID"}
-        for (let index = 0; index < this.contactinfo.length; index++) {
-            if(this.contactinfo[index].id==passContactInfoID){
-                return [this.contactinfo[index],true]
-            }            
+        try {
+            if(typeof passContactInfoID!= "number"){ return "Invalid ContactInfo ID"}
+            for (let index = 0; index < this.contactinfo.length; index++) {
+                if(this.contactinfo[index].id==passContactInfoID){
+                    return [this.contactinfo[index],true]
+                }            
+            }
+        } catch (error) {
+            throw error
         }
-        return [-1,false]
+        // return [-1,false]
     }
 
     // updateContactInfo(contactID,parameter,newValue,oldvalue){
@@ -76,18 +89,23 @@ class Contact{
     // }
 
     updateContactInfo(contactID,parameter,newValue,contactinfoID){
-        for (let index = 0; index < this.contactinfo.length; index++) {
-            // console.log("------------------------------------");
-            // console.log(this.contactinfo[index].id);
-            // console.log(contactinfoID);
-            if(this.contactinfo[index].id==contactinfoID){
-                // this.contactinfo[index].typeOfContact = newValue
+        try {
+            for (let index = 0; index < this.contactinfo.length; index++) {
                 // console.log("------------------------------------");
-                // console.log(this.updateContactInfo(parameter,newValue,oldvalue));
-                return this.contactinfo[index].updateContactInfo(parameter,newValue)
+                // console.log(this.contactinfo[index].id);
+                // console.log(contactinfoID);
+                if(this.contactinfo[index].id==contactinfoID){
+                    // this.contactinfo[index].typeOfContact = newValue
+                    // console.log("------------------------------------");
+                    // console.log(this.updateContactInfo(parameter,newValue,oldvalue));
+                    return this.contactinfo[index].updateContactInfo(parameter,newValue)
+                }
             }
+            throw new Error("update contact info failed")
+        } catch (error) {
+            throw error
         }
-        return "failed"
+        // return "failed"
 
         // return this.contactinfo[contactID].updateContactInfo(parameter,newValue,oldvalue)
     }
@@ -95,14 +113,18 @@ class Contact{
     deleteContactInfo(parameter){
         // console.log("--------------------------------------------");
         // console.log(this.contactinfo);
-        for (let index = 0; index < this.contactinfo.length; index++) {
-            // console.log("ok"+this.contactinfo[1].typeOfContact);
-            if(this.contactinfo[index].typeOfContact==parameter){
-                // console.log("entered if");
-                this.contactinfo.splice(index,1)
-                return "Done"
-            }
-            
+        try {
+            for (let index = 0; index < this.contactinfo.length; index++) {
+                // console.log("ok"+this.contactinfo[1].typeOfContact);
+                if(this.contactinfo[index].typeOfContact==parameter){
+                    // console.log("entered if");
+                    this.contactinfo.splice(index,1)
+                    return "Contact Info Deleted"
+                }
+                
+            } throw new Error("delete contact info failed")
+        } catch (error) {
+            throw error
         }
         return "Not found"
         console.log("--------------------------------------------");
