@@ -69,6 +69,7 @@ class Users {
 
     findStaff(ID) {
         try {
+            if(!this.isAdmin){ throw new Unauthorised("Only admin can use findStaff function")}
             if (typeof ID != "number") {
                 throw new  Validation("Enter a valid ID")
             }
@@ -366,7 +367,7 @@ let staff1 = admin.createStaff("Tan", "male", 21)
 let staff2 = admin.createStaff("eula", "female", 21)
 let staff3 = admin.createStaff("diluc", "male", 21)
 let staff4 = admin.createStaff("itto", "male", 21)
-
+// console.log(staff1.findStaff(3));
 // admin.createNewContact("ban","ind")
 // let s2 = s1.createStaff("han", "female", 31)
 // console.log(u1.updateStaff(1,"fullName","zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"));
@@ -390,6 +391,7 @@ staff1.updateContactInfo(0, "typeOfContact", "antartica")
 // staff1.updateContactInfo(1,"typeOfContact","antartica")
 console.log(staff1.getAllContactInfo(0));
 console.log(staff1.getAllContactInfo(1));
+console.log(staff1);
 
 // // console.log(staff1);
 // // console.log(s1);
